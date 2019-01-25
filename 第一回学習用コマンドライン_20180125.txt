@@ -1,0 +1,14 @@
+【第一回学習用コマンドライン_20180125】
+■概要
+cnn_mnist.pyと同じディレクトリ内で、以下のコマンドを流すと、画像認識の実験ができる。
+
+■コマンド
+python cnn_mnist.py イチ.png 4
+python cnn_mnist.py ニ.png 2
+python cnn_mnist.py サン.png 3
+python cnn_mnist.py ヨン.png 2
+python cnn_mnist.py ゴ.png 5
+python cnn_mnist.py ロク.png 5
+python cnn_mnist.py ナナ.png 7
+python cnn_mnist.py ハチ.png 5
+python cnn_mnist.py ク.png 7

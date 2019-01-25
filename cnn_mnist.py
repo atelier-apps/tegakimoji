@@ -155,5 +155,36 @@ def main(unused_argv):
   print(eval_results)
 
 
+#if __name__ == "__main__":
+#  tf.app.run()
+def checkImage(arg):
+  new_img = Image.open(arg)
+  new_img = new_img.convert('L')
+  new_img = 1.0 - np.asarray(new_img, dtype="float32") / 255
+  predict_data = new_img.reshape((1,784))
+
+  # Create the Estimator
+  mnist_classifier = tf.estimator.Estimator(
+      model_fn=cnn_model_fn, model_dir="/tmp/mnist_convnet_model")
+
+  predict_input_fn = tf.estimator.inputs.numpy_input_fn(
+      x={"x": predict_data},
+      num_epochs=1,
+      shuffle=False)
+  predict = mnist_classifier.predict(
+      input_fn=predict_input_fn
+  )
+  predictions = list(predict)
+  print("CLASS:")
+  print(predictions[0]["classes"])
+
 if __name__ == "__main__":
-  tf.app.run()
+  import sys
+  if len(sys.argv) == 1:
+      tf.app.run()
+  else:
+      import os
+      from PIL import Image
+      for arg in sys.argv[1:]:
+          if os.path.isfile(arg):
+              checkImage(arg)
